@@ -1,4 +1,8 @@
 <?php 
+    //Conexion a la base de datos
+    require __DIR__ . '/../../includes/config/database.php';
+    $db = conectarDB();
+
     require '../../includes/funciones.php';
     incluirTemplate('header');
 ?>
@@ -8,22 +12,47 @@
 
         <a href="/bienesraices_fin/admin/index.php" class="boton boton-verde">Volver</a>
 
-        <form action="formulario">
+        <form class="formulario">
             <fieldset>
                 <legend>Informacion General</legend>
 
-                <label for="nombre">Nombre</label>
-                <input type="text" placeholder="Tu Nombre" id="nombre">
+                <label for="titulo">Titulo:</label>
+                <input type="text" id="titulo" placeholder="Titulo Propiedad">
 
-                <label for="email">E-mail</label>
-                <input type="email" placeholder="Tu Email" id="email">
-
-                <label for="telefono">Teléfono</label>
-                <input type="tel" placeholder="Tu Teléfono" id="telefono">
-
-                <label for="mensaje">Mensaje:</label>
-                <textarea id="mensaje"></textarea>
+                <label for="precio">Precio:</label>
+                <input type="number" id="precio" placeholder="Precio Propiedad">
+                
+                <label for="imagen">Imagen:</label>
+                <input type="file" id="imagen" accept="imagen/jpeg, imageb/png"> 
+                 
+                
+                <label for="descripcion">Descripcion:</label>
+                <textarea id = "descripcion"></textarea>
             </fieldset>
+
+            <fieldset>
+            <legend>Informacion Propiedad</legend>
+
+            <label for="habitaciones">Habitaciones:</label>
+            <input type="number" id="habitaciones" placeholder="Ej. 3" min="1" max="9">
+            
+            <label for="banos">Baños:</label>
+            <input type="number" id="banos" placeholder="Ej. 1" min="1" max="9">
+
+            <label for="estacionamiento">Estacionamiento:</label>
+            <input type="number" id="estacionamiento" placeholder="Ej. 2" min="1" max="9">
+            
+            </fieldset>
+
+            <fieldset>
+                <legend>Vendedor</legend>
+
+                <select>
+                    <option value="1">Jose Navas</option>
+                </select>
+            </fieldset>
+
+            <input type="submit" value="Crear Propiedad" class="boton boton-verde">
         </form>
     </main>
 
