@@ -1,4 +1,7 @@
 <?php 
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+
     //Conexion a la base de datos
     require __DIR__ . '/../../includes/config/database.php';
     $db = conectarDB();
@@ -20,16 +23,18 @@
         $vendedorId = $_POST['vendedor'];
 
         // Insertar en la base de datos
-        $query = " INSERT INTO propiedades (titulo, precio, descripcion, habitaciones, wc, estacionamiento, vendedorId) VALUES ('$titulo', '$precio', '$descripcion', '$wc','$estacionamiento', '$vendedorId') ";
+        $query = "INSERT INTO propiedades (titulo, precio, descripcion, habitaciones, wc, estacionamiento, vendedorId) VALUES ('$titulo', '$precio', '$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$vendedorId')";
 
-        // echo $query;
 
+        echo $query;
+        $db = conectarDB();
         $resultado = mysqli_query($db,$query);
 
         if($resultado){
             echo "Insertado correctamente";
+        } else {
+            echo "error en la consulta" . mysqli_error($db);
         }
-
     }
 ?>
 
@@ -38,7 +43,7 @@
 
         <a href="/bienesraices_fin/admin/index.php" class="boton boton-verde">Volver</a>
 
-        <form class="formulario" method="POST" action = "/bienesraices_fin/admin/propiedades/crear.php">
+        <form class="formulario" method="POST" action = "/bienesraices_fin/admin/propiedades/crear.php" enctype="multipart/form-data">
             <fieldset>
                 <legend>Informacion General</legend>
 
